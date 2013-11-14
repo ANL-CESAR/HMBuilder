@@ -2,59 +2,87 @@
 
 id = 100
 
+def is_guide_tube( x, y ):
+	if(
+			(x==2 and (y==5 or y==8 or y==11))
+			 or 
+			(x==3 and (y==3 or y==13))
+			 or 
+			(x==5 and (y==2 or y==5 or y==8 or y==11 or y==14))
+			 or 
+			(x==8 and (y==2 or y==5 or y==8 or y==11 or y==14))
+			 or 
+			(x==11 and (y==2 or y==5 or y==8 or y==11 or y==14))
+			 or 
+			(x==13 and (y==3 or y==13))
+			 or 
+			(x==14 and (y==5 or y==8 or y==11))
+	):
+		return 1
+	else:
+		return 0
+	
+
+def make_fuel_cell( c_x, c_y, x, y ):
+	global id
+	lines = []
+	x_coord = c_x + ( x - 8 ) * 1.26;
+	y_coord = c_y + ( y - 8 ) * 1.26;
+
+	start_id = id;
+
+	l_x =
+	r_x = 
+	l_y =
+	r_y =
+	top =
+	bot =
+
+	# print surfaces
+	for i in range(1, 11):
+		radius = ( .41 / 10.0 ) * i;
+		lines.append('<surface id="'+str(id)+'" type="z-cylinder" coeffs="'+str(x_coord)+' '+str(y_coord)+' '+str(radius)+'"/>')
+		id += 1
+
+	id = start_id;
+
+	# print cells
+	lines.append('<cell id = "'+str(id)+'" material="1" surfaces="-'+str(id)+'"/>')
+	for i in range(1, 10):
+		lines.append('<cell id ="'+str(id+1)+'" material="1" surfaces="'+str(id)+' '+str(id+1)+'"/>')
+		id+=1
+	
+	return lines
+
+def make_guide_cell( c_x, c_y, x, y ):
+	global id
+	lines = []
+	start_id = id
+	x_coord = c_x + ( x - 8 ) * 1.26
+	y_coord = c_y + ( y - 8 ) * 1.26
+
+	lines.append('<surface id="'+str(id)+'" type="z-cylinder" coeffs="'+str(x_coord)+' '+str(y_coord)+' .56">')
+	id+=1
+	lines.append('<surface id="'+str(id)+'" type="z-cylinder" coeffs="'+str(x_coord)+' '+str(y_coord)+' .62">')
+	id = start_id
+
+	lines.append('<cell id = "'+str(id)+'" material="3" surfaces="-'+str(id)+'"/>')
+	id+=1
+	lines.append('<cell id = "'+str(id)+'" material="3" surfaces="'+str(id-1)+' -'+str(id)+'"/>')
+	id+=1
+
+	return lines
+	
+
 def make_assembly( c_x, c_y ):
 	global id
 	lines = []
 	for x in range(1, 18):
 		for y in range(1, 18):
-			# if guide tube
-			if(
-					(x==2 and (y==5 or y==8 or y==11))
-					 or 
-					(x==3 and (y==3 or y==13))
-					 or 
-					(x==5 and (y==2 or y==5 or y==8 or y==11 or y==14))
-					 or 
-					(x==8 and (y==2 or y==5 or y==8 or y==11 or y==14))
-					 or 
-					(x==11 and (y==2 or y==5 or y==8 or y==11 or y==14))
-					 or 
-					(x==13 and (y==3 or y==13))
-					 or 
-					(x==14 and (y==5 or y==8 or y==11))
-			  ):
-				start_id = id;
-				x_coord = c_x + ( x - 8 ) * 1.26;
-				y_coord = c_y + ( y - 8 ) * 1.26;
-				#Water
-				lines.append('<surface id="'+str(id)+'" type="z-cylinder" coeffs="'+str(x_coord)+' '+str(y_coord)+' .56">')
-				id+=1
-				#Cladding
-				lines.append('<surface id="'+str(id)+'" type="z-cylinder" coeffs="'+str(x_coord)+' '+str(y_coord)+' .62">')
-				id = start_id
-				lines.append('<cell id = "'+str(id)+'" material="3" surfaces="-'+str(id)+'"/>')
-				id+=1
-				lines.append('<cell id = "'+str(id)+'" material="3" surfaces="-'+str(id)+'"/>')
-				id+=1
+			if is_guide_tube(x,y):
+				lines = lines + make_guide_cell(c_x, c_y, x, y)
 			else:
-				x_coord = c_x + ( x - 8 ) * 1.26;
-				y_coord = c_y + ( y - 8 ) * 1.26;
-
-				start_id = id;
-
-				# print surfaces
-				for i in range(1, 11):
-					radius = ( .41 / 10.0 ) * i;
-					lines.append('<surface id="'+str(id)+'" type="z-cylinder" coeffs="'+str(x_coord)+' '+str(y_coord)+' '+str(radius)+'"/>')
-					id += 1
-
-				id = start_id;
-
-				# print cells
-				lines.append('<cell id = "'+str(id)+'" material="1" surfaces="-'+str(id)+'"/>')
-				for i in range(1, 10):
-					lines.append('<cell id ="'+str(id+1)+'" material="1" surfaces="'+str(id)+' '+str(id+1)+'"/>')
-					id+=1;
+				lines = lines + make_fuel_cell( c_x, c_y, x, y)
 
 	return lines
 		
