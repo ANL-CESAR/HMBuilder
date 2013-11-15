@@ -2,6 +2,36 @@
 
 id = 100
 
+def make_reactor():
+	lines = []
+	ll_x = -8 * 21.42;
+	ll_y = -8 * 21.42;
+	for x in range(0, 18):
+		for y in range( 0, 18):
+			ok = 0
+			if( x == 0 or x == 16 ):
+				if( y >= 5 and y <= 11 ):
+					ok = 1
+
+			if( x == 1 or x == 15 ):
+				if( y >= 3 and y <= 13 ):
+					ok = 1
+
+			if( x == 2 or x == 14 ):
+				if( y >= 2 and y <= 14 ):
+					ok = 1
+
+			if( x == 3 or x == 4 or x == 13 or x == 12 ):
+				if( y >= 1 and y <= 15 ):
+					ok = 1
+
+			if( x >= 5 and x <= 11 ):
+				ok = 1
+
+			if( ok == 1 ):
+				lines = lines + make_assembly( ll_x + x * 21.42, ll_y + y * 21.42 )
+	return lines
+
 def is_guide_tube( x, y ):
 	if(
 			(x==2 and (y==5 or y==8 or y==11))
@@ -163,7 +193,7 @@ lines.append("""
 
 <!-- Fuel Assembly and Water Stuffs -->""")
 
-lines = lines + make_assembly(0,0)
+lines = lines + make_reactor()
 
 for line in lines:
 	print line
