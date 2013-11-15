@@ -31,13 +31,6 @@ def make_fuel_cell( c_x, c_y, x, y ):
 
 	start_id = id;
 
-	l_x =
-	r_x = 
-	l_y =
-	r_y =
-	top =
-	bot =
-
 	# print surfaces
 	for i in range(1, 11):
 		radius = ( .41 / 10.0 ) * i;
@@ -51,6 +44,31 @@ def make_fuel_cell( c_x, c_y, x, y ):
 	for i in range(1, 10):
 		lines.append('<cell id ="'+str(id+1)+'" material="1" surfaces="'+str(id)+' '+str(id+1)+'"/>')
 		id+=1
+	id+=1
+	
+	# Make outer cell rectangular prism
+	start_id = id
+	l_x = c_x - 0.63
+	r_x = c_x + 0.63
+	l_y = c_y - 0.63
+	r_y = c_y + 0.63
+	top = 183
+	bot = -183
+	lines.append('<surface id="'+str(id)+'" type="x-plane" coeffs="'+str(l_x)+'"/>')
+	id+=1
+	lines.append('<surface id="'+str(id)+'" type="x-plane" coeffs="'+str(r_x)+'"/>')
+	id+=1
+	lines.append('<surface id="'+str(id)+'" type="y-plane" coeffs="'+str(l_y)+'"/>')
+	id+=1
+	lines.append('<surface id="'+str(id)+'" type="y-plane" coeffs="'+str(r_y)+'"/>')
+	id+=1
+	lines.append('<surface id="'+str(id)+'" type="z-plane" coeffs="'+str(bot)+'"/>')
+	id+=1
+	lines.append('<surface id="'+str(id)+'" type="z-plane" coeffs="'+str(top)+'"/>')
+	id+=1
+	id = start_id
+	lines.append('<cell id = "'+str(id)+'" material="3" surfaces="'+str(id)+' -'+str(id+1)+' '+str(id+2)+' -'+str(id+3)+' '+str(id+4)+' -'+str(id+5)+' '+str(id-1)+'"/>')
+	id += 6
 	
 	return lines
 
