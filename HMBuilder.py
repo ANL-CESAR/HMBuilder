@@ -195,5 +195,9 @@ lines.append("""
 
 lines = lines + make_reactor()
 
+lines.append('</geometry>')
+
 for line in lines:
 	print line
+
+	
