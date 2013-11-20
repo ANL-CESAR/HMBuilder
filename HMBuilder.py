@@ -178,8 +178,6 @@ lines.append("""
 <surface id="39" type="z-plane" coeffs="223.0" boundary="vacuum" />
 
 <!-- All Basic Reactor Part Cells -->
-<cell id="1"  fill="200"    surfaces="  -6 34 -35" /> <!-- Lower core -->
-<cell id="2"  fill="201"    surfaces="  -6 35 -36" /> <!-- Upper core -->
 <cell id="3"  material="8"  surfaces="  -7 31 -32" /> <!-- Lower core plate region -->
 <cell id="4"  material="9"  surfaces="  -5 32 -33" /> <!-- Bottom nozzle region -->
 <cell id="5"  material="12" surfaces="  -5 33 -34" /> <!-- Bottom FA region -->
@@ -192,6 +190,8 @@ lines.append("""
 <cell id="12" material="7"  surfaces="5 -6 36 -38" /> <!-- Top of radial reflector -->
 
 <!-- Fuel Assembly and Water Stuffs -->""")
+#<cell id="1"  fill="200"    surfaces="  -6 34 -35" /> <!-- Lower core -->
+#<cell id="2"  fill="201"    surfaces="  -6 35 -36" /> <!-- Upper core -->
 
 lines = lines + make_reactor()
 
