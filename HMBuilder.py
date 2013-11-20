@@ -70,9 +70,9 @@ def make_fuel_cell( c_x, c_y, x, y ):
 	id = start_id;
 
 	# print cells
-	lines.append('<cell id = "'+str(id)+'" material="1" surfaces="-'+str(id)+'"/>')
+	lines.append('<cell id="'+str(id)+'" material="1" surfaces="-'+str(id)+'"/>')
 	for i in range(1, 10):
-		lines.append('<cell id ="'+str(id+1)+'" material="1" surfaces="'+str(id)+' '+str(id+1)+'"/>')
+		lines.append('<cell id="'+str(id+1)+'" material="1" surfaces="'+str(id)+' -'+str(id+1)+'"/>')
 		id+=1
 	id+=1
 	
@@ -97,7 +97,7 @@ def make_fuel_cell( c_x, c_y, x, y ):
 	lines.append('<surface id="'+str(id)+'" type="z-plane" coeffs="'+str(top)+'"/>')
 	id+=1
 	id = start_id
-	lines.append('<cell id = "'+str(id)+'" material="3" surfaces="'+str(id)+' -'+str(id+1)+' '+str(id+2)+' -'+str(id+3)+' '+str(id+4)+' -'+str(id+5)+' '+str(id-1)+'"/>')
+	lines.append('<cell id="'+str(id)+'" material="3" surfaces="'+str(id)+' -'+str(id+1)+' '+str(id+2)+' -'+str(id+3)+' '+str(id+4)+' -'+str(id+5)+' '+str(id-1)+'"/>')
 	id += 6
 	
 	return lines
@@ -114,9 +114,9 @@ def make_guide_cell( c_x, c_y, x, y ):
 	lines.append('<surface id="'+str(id)+'" type="z-cylinder" coeffs="'+str(x_coord)+' '+str(y_coord)+' .62">')
 	id = start_id
 
-	lines.append('<cell id = "'+str(id)+'" material="3" surfaces="-'+str(id)+'"/>')
+	lines.append('<cell id="'+str(id)+'" material="3" surfaces="-'+str(id)+'"/>')
 	id+=1
-	lines.append('<cell id = "'+str(id)+'" material="3" surfaces="'+str(id-1)+' -'+str(id)+'"/>')
+	lines.append('<cell id="'+str(id)+'" material="3" surfaces="'+str(id-1)+' -'+str(id)+'"/>')
 	id+=1
 	
 	# Make outer cell rectangular prism
@@ -140,7 +140,7 @@ def make_guide_cell( c_x, c_y, x, y ):
 	lines.append('<surface id="'+str(id)+'" type="z-plane" coeffs="'+str(top)+'"/>')
 	id+=1
 	id = start_id
-	lines.append('<cell id = "'+str(id)+'" material="3" surfaces="'+str(id)+' -'+str(id+1)+' '+str(id+2)+' -'+str(id+3)+' '+str(id+4)+' -'+str(id+5)+' '+str(id-1)+'"/>')
+	lines.append('<cell id="'+str(id)+'" material="3" surfaces="'+str(id)+' -'+str(id+1)+' '+str(id+2)+' -'+str(id+3)+' '+str(id+4)+' -'+str(id+5)+' '+str(id-1)+'"/>')
 	id += 6
 
 	return lines
