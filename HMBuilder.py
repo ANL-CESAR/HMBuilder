@@ -30,6 +30,7 @@ def make_reactor():
 
 			if( ok == 1 ):
 				lines = lines + make_assembly( ll_x + x * 21.42, ll_y + y * 21.42 )
+				return lines
 	return lines
 
 def is_guide_tube( x, y ):
@@ -109,9 +110,9 @@ def make_guide_cell( c_x, c_y, x, y ):
 	x_coord = c_x + ( x - 8 ) * 1.26
 	y_coord = c_y + ( y - 8 ) * 1.26
 
-	lines.append('<surface id="'+str(id)+'" type="z-cylinder" coeffs="'+str(x_coord)+' '+str(y_coord)+' .56">')
+	lines.append('<surface id="'+str(id)+'" type="z-cylinder" coeffs="'+str(x_coord)+' '+str(y_coord)+' .56"/>')
 	id+=1
-	lines.append('<surface id="'+str(id)+'" type="z-cylinder" coeffs="'+str(x_coord)+' '+str(y_coord)+' .62">')
+	lines.append('<surface id="'+str(id)+'" type="z-cylinder" coeffs="'+str(x_coord)+' '+str(y_coord)+' .62"/>')
 	id = start_id
 
 	lines.append('<cell id="'+str(id)+'" material="3" surfaces="-'+str(id)+'"/>')
