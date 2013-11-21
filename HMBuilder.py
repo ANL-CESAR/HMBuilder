@@ -3,6 +3,42 @@
 id = 100
 
 uid = 1
+tally_cells = []
+
+def make_tallies():
+	lines = []
+	lines.append("""<?xml version="1.0"?>
+<tallies>
+<mesh id="1">
+<type>rectangular</type>
+<lower_left>-182.07 -182.07 -183.00</lower_left>
+<upper_right>182.07  182.07  183.00</upper_right>
+<dimension>1 1 100</dimension>
+</mesh>
+
+<tally id="1">
+<filter type="mesh" bins="1" />
+<filter>
+<type>cell</type>
+<bins>""")
+	line = ''
+	for i in range(0,len(tally_cells)):
+		if i % 10 == 0 and i != 0:
+			lines.append(line)
+			line = str(tally_cells[i]) + ' '
+		else:
+			line = line + str(tally_cells[i]) + ' '
+	
+	lines.append("""
+</bins>
+</filter>
+<scores> scatter absorption fission </scores>
+<nuclides>U-234 U-235 U-236 U-238 Np-237 Pu-238 Pu-239 Pu-240 Pu-241 Pu-242 Am-241 Am-242m Am-243 Cm-242 Cm-244 Mo-95 Tc-99 Ru-101 Ru-103 Ag-109 Xe-135 Cs-133 Nd-143 Nd-145 Sm-147 Sm-149 Sm-150 Sm-151 Sm-152 Eu-153 Gd-155 O-16</nuclides>
+</tally>
+</tallies>""")	
+
+	return lines
+	
 
 def make_pattern():
 	lines = []
@@ -103,6 +139,7 @@ def is_guide_tube( x, y ):
 	
 
 def make_fuel_cell( c_x, c_y, x, y ):
+	global tally_cells
 	global id
 	lines = []
 	x_coord = c_x + ( x - 8 ) * 1.26;
@@ -120,9 +157,11 @@ def make_fuel_cell( c_x, c_y, x, y ):
 
 	# print cells
 	lines.append('<cell id="'+str(id)+'" universe="'+str(uid)+'" material="1" surfaces="-'+str(id)+'"/>')
+	tally_cells.append(id)
 	for i in range(1, 10):
 		lines.append('<cell id="'+str(id+1)+'" universe="'+str(uid)+'" material="1" surfaces="'+str(id)+' -'+str(id+1)+'"/>')
 		id+=1
+		tally_cells.append(id)
 	id+=1
 
 	#print cladding
@@ -269,7 +308,13 @@ lines.append("""
 
 lines.append('</geometry>')
 
+fp = open("geometry.xml", "w")
 for line in lines:
-	print line
+	print >> fp, line
+fp.close()
 
-	
+lines = make_tallies()	
+fp = open("tallies.xml", "w")
+for line in lines:
+	print >> fp, line
+fp.close()
