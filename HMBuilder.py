@@ -77,7 +77,8 @@ def make_reactor():
 					ok = 1
 
 			if( ok == 1 ):
-				lines = lines + make_assembly( ll_x + x * 21.42, ll_y + y * 21.42 )
+				#lines = lines + make_assembly( ll_x + x * 21.42, ll_y + y * 21.42 )
+				lines = lines + make_assembly( 0, 0 )
 	return lines
 
 def is_guide_tube( x, y ):
@@ -123,6 +124,12 @@ def make_fuel_cell( c_x, c_y, x, y ):
 		lines.append('<cell id="'+str(id+1)+'" universe="'+str(uid)+'" material="1" surfaces="'+str(id)+' -'+str(id+1)+'"/>')
 		id+=1
 	id+=1
+
+	#print cladding
+	lines.append('<surface id="'+str(id)+'" type="z-cylinder" coeffs="'+str(x_coord)+' '+str(y_coord)+' .475"/>')
+	lines.append('<cell id="'+str(id)+'" universe="'+str(uid)+'" material="2" surfaces="-.475 '+str(id-1)+'"/>')
+	id+=1
+
 	
 	# Make outer cell rectangular prism
 	start_id = id
@@ -164,7 +171,7 @@ def make_guide_cell( c_x, c_y, x, y ):
 
 	lines.append('<cell id="'+str(id)+'" universe="'+str(uid)+'" material="3" surfaces="-'+str(id)+'"/>')
 	id+=1
-	lines.append('<cell id="'+str(id)+'" universe="'+str(uid)+'" material="3" surfaces="'+str(id-1)+' -'+str(id)+'"/>')
+	lines.append('<cell id="'+str(id)+'" universe="'+str(uid)+'" material="2" surfaces="'+str(id-1)+' -'+str(id)+'"/>')
 	id+=1
 	
 	# Make outer cell rectangular prism
