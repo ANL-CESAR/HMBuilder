@@ -127,7 +127,7 @@ def make_fuel_cell( c_x, c_y, x, y ):
 
 	#print cladding
 	lines.append('<surface id="'+str(id)+'" type="z-cylinder" coeffs="'+str(x_coord)+' '+str(y_coord)+' .475"/>')
-	lines.append('<cell id="'+str(id)+'" universe="'+str(uid)+'" material="2" surfaces="'+str(id)+' '+str(id-1)+'"/>')
+	lines.append('<cell id="'+str(id)+'" universe="'+str(uid)+'" material="2" surfaces="-'+str(id)+' '+str(id-1)+'"/>')
 	id+=1
 
 	
