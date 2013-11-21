@@ -3,6 +3,7 @@
 
   <plot id="1">
     <filename>full_core</filename>
+    <color>mat</color>
     <type>slice</type>
     <origin>0. 0. -10.</origin>
     <width>504 504</width>

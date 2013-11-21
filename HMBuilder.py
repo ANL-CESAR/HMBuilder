@@ -205,8 +205,8 @@ def make_assembly( c_x, c_y ):
 	global id
 	global uid
 	lines = []
-	for x in range(1, 18):
-		for y in range(1, 18):
+	for x in range(0, 17):
+		for y in range(0, 17):
 			if is_guide_tube(x,y):
 				lines = lines + make_guide_cell(c_x, c_y, x, y)
 			else:
