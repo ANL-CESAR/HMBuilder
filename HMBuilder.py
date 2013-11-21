@@ -37,15 +37,17 @@ def make_pattern():
 				uid += 1
 			else:
 				lines[x+2].append('300')
+	
+	string = ''
+	for x in range(0,21):
+		for y in range(0,21):
+			if( y != 0 ):
+				string = string+' '
+			string = string+lines[y][20-x].ljust(3)
+		string = string+'\n'
 				
-	return lines
+	return string
 
-lines = make_pattern()
-for x in range(0,21):
-	for y in range(0,21):
-		print lines[y][20-x].ljust(3),
-	print ''
-exit(0)
 
 def make_reactor():
 	lines = []
@@ -209,6 +211,7 @@ def make_assembly( c_x, c_y ):
 lines = []
 lines.append('<?xml version="1.0"?>')
 lines.append('<geometry>')
+lines.append('<cell id="1"  fill="1066284" surfaces=" -6 34 -36" />')
 lines.append("""
 <!-- All Basic Reactor Part Surfaces -->
 <surface id="5" type="z-cylinder" coeffs="0. 0. 187.6" />
@@ -236,12 +239,26 @@ lines.append("""
 <cell id="10" material="5"  surfaces="7 -8 31 -39" /> <!-- RPV -->
 <cell id="11" material="6"  surfaces="5 -6 32 -34" /> <!-- Bottom of radial reflector -->
 <cell id="12" material="7"  surfaces="5 -6 36 -38" /> <!-- Top of radial reflector -->
+<!-- cell for water assembly (hot) -->
+<cell id="70" universe="300" material="3" surfaces="34 -36" />
 
 <!-- Fuel Assembly and Water Stuffs -->""")
 #<cell id="1"  fill="200"    surfaces="  -6 34 -35" /> <!-- Lower core -->
 #<cell id="2"  fill="201"    surfaces="  -6 35 -36" /> <!-- Upper core -->
 
 lines = lines + make_reactor()
+  
+lines.append('<lattice id="'+str(id)+'">')
+lines.append("""
+<type>rectangular</type>
+<dimension>21 21</dimension>
+<lower_left>-224.91 -224.91</lower_left>
+<width>21.42 21.42</width>
+<universes>""")
+lines.append(make_pattern())
+lines.append("""
+</universes>
+</lattice>""")
 
 lines.append('</geometry>')
 
