@@ -4,6 +4,49 @@ id = 100
 
 uid = 1
 
+def make_pattern():
+	lines = []
+	for x in range(-2,19):
+		lines.append([])
+	uid = 1
+	for x in range(-2,19):
+		for y in range(-2,19):
+			ok = 0
+			if( x == 0 or x == 16 ):
+				if( y >= 5 and y <= 11 ):
+					ok = 1
+
+			if( x == 1 or x == 15 ):
+				if( y >= 3 and y <= 13 ):
+					ok = 1
+
+			if( x == 2 or x == 14 ):
+				if( y >= 2 and y <= 14 ):
+					ok = 1
+
+			if( x == 3 or x == 4 or x == 13 or x == 12 ):
+				if( y >= 1 and y <= 15 ):
+					ok = 1
+
+			if( x >= 5 and x <= 11 ):
+				if( y >= 0 and y <= 16 ):
+					ok = 1
+
+			if( ok == 1 ):
+				lines[x+2].append(str(uid))
+				uid += 1
+			else:
+				lines[x+2].append('300')
+				
+	return lines
+
+lines = make_pattern()
+for x in range(0,21):
+	for y in range(0,21):
+		print lines[y][20-x].ljust(3),
+	print ''
+exit(0)
+
 def make_reactor():
 	lines = []
 	ll_x = -8 * 21.42;
