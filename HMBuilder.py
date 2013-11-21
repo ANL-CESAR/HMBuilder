@@ -218,7 +218,7 @@ def make_assembly( c_x, c_y ):
 lines = []
 lines.append('<?xml version="1.0"?>')
 lines.append('<geometry>')
-lines.append('<cell id="1"  fill="1066284" surfaces=" -6 34 -36" />')
+lines.append('<cell id="1"  fill="1129908" surfaces=" -6 34 -36" />')
 lines.append("""
 <!-- All Basic Reactor Part Surfaces -->
 <surface id="5" type="z-cylinder" coeffs="0. 0. 187.6" />
