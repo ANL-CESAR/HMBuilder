@@ -28,7 +28,8 @@ def make_reactor():
 					ok = 1
 
 			if( x >= 5 and x <= 11 ):
-				ok = 1
+				if( y >= 0 and y <= 16 ):
+					ok = 1
 
 			if( ok == 1 ):
 				lines = lines + make_assembly( ll_x + x * 21.42, ll_y + y * 21.42 )
