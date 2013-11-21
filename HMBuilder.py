@@ -30,7 +30,6 @@ def make_reactor():
 
 			if( ok == 1 ):
 				lines = lines + make_assembly( ll_x + x * 21.42, ll_y + y * 21.42 )
-				return lines
 	return lines
 
 def is_guide_tube( x, y ):
