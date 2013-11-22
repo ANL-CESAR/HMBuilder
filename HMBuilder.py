@@ -1,9 +1,13 @@
 #!/usr/bin/python
 
+import sys
+
 id = 100
 
 uid = 1
 tally_cells = []
+
+n_tallies = 4000
 
 def make_tallies():
 	lines = []
@@ -28,6 +32,8 @@ def make_tallies():
 			line = str(tally_cells[i]) + ' '
 		else:
 			line = line + str(tally_cells[i]) + ' '
+		if i > n_tallies:
+			break
 	
 	lines.append("""
 </bins>
