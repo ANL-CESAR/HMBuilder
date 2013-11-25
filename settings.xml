@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <settings>
 <cross_sections>/home/jtramm/data/cross_sections.xml</cross_sections>
-<!--<servers>2</servers>-->
+<servers>2</servers>
   <eigenvalue>
     <batches>20</batches>
     <inactive>10</inactive>

@@ -10,12 +10,12 @@
   </plot>
 -->
   <plot id="2">
-    <filename>assembly</filename>
+    <filename>assembly_VHD</filename>
     <type>slice</type>
     <!--<color>mat</color>-->
     <origin>0. 0. -10.</origin>
     <width>21.42 21.42</width>
-    <pixels>2000 2000</pixels>
+    <pixels>8000 8000</pixels>
   </plot>
 
 </plots>
