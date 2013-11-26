@@ -7,7 +7,7 @@ id = 100
 uid = 1
 tally_cells = []
 
-n_tallies = 4000
+n_tallies = 1000
 
 def make_tallies():
 	lines = []
@@ -260,6 +260,13 @@ def make_assembly( c_x, c_y ):
 
 	return lines
 		
+if( len(sys.argv) != 2 ):
+	n_tallies = 2000000000
+	print "Printing full geometry and ALL tallies..."
+else:
+	n_tallies = int(sys.argv[1])
+	print "Printing full geometry and "+sys.argv[1]+" tallies..."
+
 lines = []
 lines.append('<?xml version="1.0"?>')
 lines.append('<geometry>')
