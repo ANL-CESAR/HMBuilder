@@ -1,0 +1,11 @@
+TODO List for HMBuilder:
+
+- Need to add bottom/top water temperature differences for core model.
+Currently, both ends of the reactor core have a mono-temp moderator,
+which throws off the k-eff of the final calculation as well as causing
+larger than normal sample variance. I.e., the final paper needs this
+fix as I'm going to have to A) provide the expected k-eff for runtimes
+I give, verifiable by a run without tallies at all (easily done, and I
+should do this anyhow), and B) provide a cross-sectional picture of
+the core, which may look inaccurate given the lack of temperature bias
+in the core.
