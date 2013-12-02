@@ -9,3 +9,7 @@ I give, verifiable by a run without tallies at all (easily done, and I
 should do this anyhow), and B) provide a cross-sectional picture of
 the core, which may look inaccurate given the lack of temperature bias
 in the core.
+
+- Need get plotting scripts to work. Haven't gotten this to work yet
+even on the simplest of cases (such as is provided with the default
+mc-performance benchmark case).
