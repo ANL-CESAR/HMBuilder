@@ -23,7 +23,7 @@ The goal of the HMBuilder script is to simulate the Hoogenboom-Martin
 reactor with separate tally bins for 10 concentric radial regions and
 100 axial cuts for each fuel rod.
 
-TB_tallyserver is an input deck creator for OpenMC, capabel of creating the
+HMBuilder is an input deck creator for OpenMC, capabel of creating the
 input files necessary to define the Hoogenboom-Martin TB model.
 
 When run, the following files are created in the current working
@@ -44,13 +44,9 @@ Considering approximately 33 fuel nuclides, each with 6 reaction types, and
 the size of a tally object being 24 bytes, the total tally data can be
 calculated as:
 
-	Tally Data = 63,624,000 tallies x 24 bytes/tally x 33 nucs x 6 XS's
-	           = 281.6 GB
-	           = 0.27  TB
-
-Note that there is also a "Large" version of the TB tallyserver corresponding
-to the Hoogenboom-Martin "Large" reactor model. This increases the number
-of nuclides from 33 to 320. See details below for running the larger model.
+	Tally Data = 63,624,000 tallies x 24 bytes/tally x 33 nucs x 3 XS's
+	           = 140.8 GB
+	           = 0.14  TB
 
 ==============================================================================
 Quick Start Guide
@@ -70,9 +66,9 @@ Download----------------------------------------------------------------------
 
 	>$ cd TB_tallyserver
 
-Running TB_tallyserver--------------------------------------------------------
+Running HMBuilder--------------------------------------------------------
 
-	To run TB_tallyserver with default settings, use the following command:
+	To run HMBuilder with default settings, use the following command:
 
 	>$ ./HMBuilder
 
