@@ -3,13 +3,14 @@
 import sys
 import math
 
-n_radial = 3
-n_axial = 100
-n_azimuthal = 1
+### USER SETTINGS ###
+n_radial = 10 # Number of equi-area radial ring regions in each fuel pin
+n_axial = 100 # Number of axial cuts in mesh grid
+n_azimuthal = 1 # Number of azimuthal regions in each fuel pin (not yet implemented)
+n_tallies = 0 # Max number of tallies to print out (for testing on non TB memory machines)
+              # Note - n_tallies is inputted via command line interface
+### USER SETTINGS ###
 
-
-
-n_tallies = 1000
 id = 100
 
 uid = 1
