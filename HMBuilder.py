@@ -2,6 +2,10 @@
 
 import sys
 
+n_radial = 10
+n_axial = 100
+n_azimuthal = 1
+
 id = 100
 
 uid = 1
@@ -147,6 +151,7 @@ def is_guide_tube( x, y ):
 def make_fuel_cell( c_x, c_y, x, y ):
 	global tally_cells
 	global id
+	global n_radial
 	lines = []
 	x_coord = c_x + ( x - 8 ) * 1.26;
 	y_coord = c_y + ( y - 8 ) * 1.26;
@@ -155,7 +160,7 @@ def make_fuel_cell( c_x, c_y, x, y ):
 
 	# print surfaces
 	for i in range(1, 11):
-		radius = ( .41 / 10.0 ) * i;
+		radius = ( .41 / n_radial ) * i;
 		lines.append('<surface id="'+str(id)+'" type="z-cylinder" coeffs="'+str(x_coord)+' '+str(y_coord)+' '+str(radius)+'"/>')
 		id += 1
 

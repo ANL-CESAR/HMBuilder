@@ -89,3 +89,9 @@ J.E. Hoogenboom, W.R. Martin, B. Petrovic, “The Monte Carlo performance
 benchmark test aims, specifications and first results,” International
 Conference on Mathematics and Computational Methods Applied to Nuclear
 Science and Engineering, Rio de Janeiro, Brazil (2011).
+
+Constant annual rings can be computed as:
+
+Ri = sqrt( Rn^2 * i / n )
+
+For n rings, where Rn is the outer (nth) Radius, and Ri is the radius in question.
