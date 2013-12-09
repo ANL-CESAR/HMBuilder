@@ -1,17 +1,19 @@
 #!/usr/bin/python
 
 import sys
+import math
 
-n_radial = 10
+n_radial = 3
 n_axial = 100
 n_azimuthal = 1
 
+
+
+n_tallies = 1000
 id = 100
 
 uid = 1
 tally_cells = []
-
-n_tallies = 1000
 
 def make_tallies():
 	lines = []
@@ -21,7 +23,7 @@ def make_tallies():
 <type>rectangular</type>
 <lower_left>-182.07 -182.07 -183.00</lower_left>
 <upper_right>182.07  182.07  183.00</upper_right>
-<dimension>1 1 100</dimension>
+<dimension>1 1 """+str(n_axial)+"""</dimension>
 </mesh>
 
 <tally id="1">
@@ -159,8 +161,11 @@ def make_fuel_cell( c_x, c_y, x, y ):
 	start_id = id;
 
 	# print surfaces
-	for i in range(1, 11):
-		radius = ( .41 / n_radial ) * i;
+	for i in range(1, n_radial + 1):
+		# Constant radius
+		#radius = ( .41 / n_radial ) * i;
+		# Constant area
+		radius = math.sqrt( 0.41 * 0.41 * i / n_radial )
 		lines.append('<surface id="'+str(id)+'" type="z-cylinder" coeffs="'+str(x_coord)+' '+str(y_coord)+' '+str(radius)+'"/>')
 		id += 1
 
@@ -169,7 +174,7 @@ def make_fuel_cell( c_x, c_y, x, y ):
 	# print cells
 	lines.append('<cell id="'+str(id)+'" universe="'+str(uid)+'" material="1" surfaces="-'+str(id)+'"/>')
 	tally_cells.append(id)
-	for i in range(1, 10):
+	for i in range(1, n_radial):
 		lines.append('<cell id="'+str(id+1)+'" universe="'+str(uid)+'" material="1" surfaces="'+str(id)+' -'+str(id+1)+'"/>')
 		id+=1
 		tally_cells.append(id)
