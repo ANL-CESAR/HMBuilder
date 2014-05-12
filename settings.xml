@@ -18,9 +18,17 @@
     </space>
   </source>
 
-  <entropy>
-    <lower_left>-182.07 -182.07 -183.00</lower_left>
-    <upper_right>182.07  182.07  183.00</upper_right>
-  </entropy>
+  <!-- The following specification for the entropy mesh may be incorrect for the -->
+  <!-- tallyserver model.  It raises the warning: "WARNING: Fission source -->
+  <!-- site(s) outside of entropy box.", which occurs in shannon_entropy(), as a -->
+  <!-- result of get_mesh_indices(). -->  
+
+  <!-- If the entropy mesh is not specified here, the entropy mesh will be -->
+  <!-- determined by shannon_entropy(), and the warning does not occur. -->  
+
+  <!-- <entropy> -->
+  <!--   <lower_left>-182.07 -182.07 -183.00</lower_left> -->
+  <!--   <upper_right>182.07  182.07  183.00</upper_right> -->
+  <!-- </entropy> -->
 
 </settings>
